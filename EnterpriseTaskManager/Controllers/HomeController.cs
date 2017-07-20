@@ -15,11 +15,24 @@ namespace EnterpriseTaskManager.Controllers
 			return View();
 		}
 
-		[HttpGet]
-		public string GetEventActionList()
+        public ActionResult BasicWebPage()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+		public string GetEventActionList(String EventType)
 		{
-			var json = etmControllerObj.GetEventActionList();
+			var json = etmControllerObj.GetEventActionListForEvent(EventType);
 			return json;
 		}
-	}
+
+        [HttpGet]
+        public string GetEventTransactionList()
+        {
+            var json = etmControllerObj.GetEventTransactionList();
+            return json;
+        }
+    }
 }

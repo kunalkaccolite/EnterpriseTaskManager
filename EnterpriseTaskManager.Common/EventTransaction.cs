@@ -14,5 +14,6 @@ namespace EnterpriseTaskManager.Common
 		public string ObjectKey { get; set; }
 		public string IsResolved { get; set; }
 		public string ResolvedBy { get; set; }
+        public String EventTypeDescription { get; set; }
 	}
 }

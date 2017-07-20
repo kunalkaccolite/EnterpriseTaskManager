@@ -10,3 +10,8 @@
 /EnterpriseTaskManager.DataAccess/obj/Debug
 /EnterpriseTaskManager.DataAccess/obj/Debug
 /packages
+/.vs/ETM/v15/.suo
+/.vs
+/EnterpriseTaskManager/obj/Release
+/EnterpriseTaskManager.Common/obj/Release
+/EnterpriseTaskManager.DataAccess/obj/Release
