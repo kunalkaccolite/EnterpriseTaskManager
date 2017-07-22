@@ -15,3 +15,12 @@
 /EnterpriseTaskManager/obj/Release
 /EnterpriseTaskManager.Common/obj/Release
 /EnterpriseTaskManager.DataAccess/obj/Release
+/EnterpriseTaskManager
+/EnterpriseTaskManager.Common
+/EnterpriseTaskManager.DataAccess/bin/Debug
+/PatientManagement/.vs/PatientManagement/v15/.suo
+/PatientManagement/PatientManagement/bin
+/PatientManagement/PatientManagement.Tests/obj/Debug
+/PatientManagement/PatientManagement.DataAccess/obj/Debug
+/PatientManagement/PatientManagement.Common/obj/Debug
+/PatientManagement/PatientManagement/obj/Debug
