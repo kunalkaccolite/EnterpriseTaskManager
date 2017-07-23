@@ -8,6 +8,7 @@ namespace PatientManagement.Controllers
 {
 	public class HomeController : Controller
 	{
+        HospitalMangement hmObj = new HospitalMangement();
 		public ActionResult Index()
 		{
 			ViewBag.Title = "Home Page";
@@ -16,10 +17,10 @@ namespace PatientManagement.Controllers
 		}
 
 		[HttpGet]
-		public string GetInsuranceDetails()
+		public bool CheckIfInsuranceExists(string PatientID)
 		{
-
-			return "";
+           
+			return hmObj.CheckInsuranceDetails(PatientID);
 		}
 	}
 }
