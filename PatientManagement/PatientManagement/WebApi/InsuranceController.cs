@@ -10,6 +10,8 @@ namespace PatientManagement.WebApi
 {
     public class InsuranceController : ApiController
     {
+        
+               HospitalMangement hmObj = new HospitalMangement();
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -17,23 +19,15 @@ namespace PatientManagement.WebApi
         }
 
         // GET api/<controller>/5
-        public bool Get(string id)
+        public string Get(string id)
         {
-
-            Insurance insurance = new Insurance() { PlanType="liftime", InsuranceCompanyId="12345", InsuranceCompanyName="nationalInsurance", InsuredSGroupEmpId="123123", InsurancePlanId="MEdilife jivan bima", InsuredSGroupEmpName="Kunal", PatientId = id, CreatedBy = "payal" , PlanEffectiveDate=DateTime.Now, PlanExpirationDate=DateTime.Parse("12-2-2019")};
-            HospitalMangement hmObj = new HospitalMangement();
-            return hmObj.InsertInsurance(insurance);
+            var json = hmObj.GetInsuranceDetails(id);
+            return json;
             
-            //HospitalMangement hmObj = new HospitalMangement();
-            //return hmObj.CheckInsuranceDetails(id); ;
+            
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
-
-
+  
         public void Post([FromBody]Insurance insurance)
         {
 
@@ -42,8 +36,11 @@ namespace PatientManagement.WebApi
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Insurance insurance)
         {
+            HospitalMangement hmObj = new HospitalMangement();
+            hmObj.UpdateInsuranceDetails(insurance);
+
         }
 
         // DELETE api/<controller>/5
@@ -55,8 +52,13 @@ namespace PatientManagement.WebApi
         public void InsertInsurance(String patientid)
         {
             Insurance insurance = new Insurance() { PatientId = patientid, CreatedBy = "payal" };
-            HospitalMangement hmObj = new HospitalMangement();
-            hmObj.InsertInsurance(insurance);
+              hmObj.InsertInsurance(insurance);
+        }
+
+        [HttpPost]
+        public bool CheckIfInsuranceExists(String PatientId)
+        {
+            return hmObj.CheckInsuranceDetails(PatientId);
         }
     }
 }

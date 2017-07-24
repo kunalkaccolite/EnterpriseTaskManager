@@ -18,7 +18,13 @@ namespace PatientManagement.DataAccess
         bool InsertPatientEncounterDetails(PatientEncounter patient);
 
 
-         bool UpdateEncounter(UpdateEncounter encounter);
-       
+        bool UpdateEncounter(UpdateEncounter encounter);
+
+        PatientEncounter GetPatientDetails(string PatientId);
+
+        Insurance GetInsuranceDetails(string PatientId);
+
+        bool UpdateInsuranceDetails(Insurance insurance);
+
     }
 }

@@ -7,3 +7,11 @@
         }
  
     });
+app.directive('insuranceForm',
+    function () {
+        return {
+            restrict: 'E',
+            templateUrl:'/ClientScript/HTML/InsurancePage.html'
+        }
+    }
+)
