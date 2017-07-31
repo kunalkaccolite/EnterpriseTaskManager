@@ -9,6 +9,7 @@ namespace EnterpriseTaskManager.WebAPI
 {
     public class EventController : ApiController
     {
+        ETMController etmControllerObj = new ETMController();
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -22,10 +23,11 @@ namespace EnterpriseTaskManager.WebAPI
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post([FromBody]string EventTransactionJSON)
         {
+            etmControllerObj.InsertEventTransaction(EventTransactionJSON);
         }
-
+        
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
         {

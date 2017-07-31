@@ -2,79 +2,102 @@
     ViewBag.Title = "Home Page";
 }
 
-<div ng-app="TaskManager" >
-    <div ng-controller="HomeController"  data-ng-init="init()">
-    
+<div ng-app="TaskManager">
+    <div ng-controller="HomeController" data-ng-init="init()">
+
         <br />
 
-              <div class="panel panel-primary" style="position: relative; margin-left: 20px; margin-right:20px ">
+        <div class="panel panel-primary" style="position: relative; margin-left: 10px; margin-right:10px ">
             <div class="panel-body">
-                          <div class="row ">
-                    <div class="col-sm-2 form-group">
-                        <label for="sel1">Select Event Type</label>
-                        <select class="form-control" ng-model="EventType" id="sel1">
+                <div class="row ">
+                    <div class="col col-md-3">
+                          <label for="sel1">Select Task Type</label>
+                        <select class="form-control" ng-model="EventType" id="sel1" ng-change="GetEventType(EventType)">
                             <option>Registration</option>
-                             <option>Procedure</option>
+                            <option>Procedure</option>
                             <option>Coding</option>
                             <option>Billing</option>
                             <option>Payment</option>
                             <option>Insurance Claim</option>
                         </select>
-                    </div>
-                    <div class="col-sm-2 form-group">
-                        <label for="sel2">Number of Tasks</label>
-                        <select class="form-control" id="sel1" ng-model="NumberOfTasks">
+                        </div>
+                    <div class="col col-md-3">
+                       <label for="sel2">Number of Tasks</label>
+                        <select class="form-control " id="sel1" ng-model="NumberOfTasks">
                             <option>5</option>
                             <option>10</option>
                             <option>15</option>
                             <option>20</option>
                         </select>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8" style=" margin-left:12px">
-                        <table class="table" style="background-color:lavenderblush;">
-                            <thead>
-                                <tr>
-                                    <!-- <th>#</th>-->
-                                    <th>TransactionID</th>
-                                    <th>EventType</th>
-                                    <th>IsResolved</th>
-                                    <th>ResolvedBy</th>
-                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="EventTranscation in EventTransactionList | filter: {EventTypeDescription: EventType}:true | limitTo: NumberOfTasks " ng-click="ShowHide(EventTranscation)" id="row1">
-
-                                    <!-- <th scope="row">1</th>-->
-                                    <td>{{EventTranscation.EventTransactionID}}</td>
-                                    <td>{{EventTranscation.EventTypeDescription}}</td>
-                                    <td>{{EventTranscation.IsResolved}}</td>
-                                    <td>{{EventTranscation.ResolvedBy}}</td>                           
-                                </tr>
-                               
-                            </tbody>
-                        </table>
                     </div>
 
-                    <div class="col-sm-1 " ng-show="IsVisible" id="panel1" style="margin-left: 10px;">
-                        <div class="panel panel-primary" style="position: relative; width: 250px; height:400px;">
-                            <br>
-                            <div style="font-size:20px"><b>&nbsp;&nbsp;{{EventTypeData}}</b></div>
-                            <br />
-                            <div style="font-size: 17px; color:Red">&nbsp; &nbsp;<b> Action list</b></div>
-                          
-                            <ul ng-repeat="Action in ActionList">
-                                
-                              <li><a ng-href={{Action.TargetURL}} target="_blank">{{Action.ActionType}}</a></li>
-                                
-                            </ul>
 
-                            @*<ul ng-repeat="Action in ActionList">
+                    <div class="row">
+                        <div class="col-lg-9" style=" margin-left:12px">
+                            <table class="table" style="background-color:lavenderblush;">
+                                <thead>
+                                    <tr>
+                                        <!-- <th>#</th>-->
+                                        <th>TransactionID</th>
+                                        <th>Task Type</th>
+                                        <th ng-repeat="item in ItemsToBEShown | limitTo:4">{{item}}</th>
+                                        <th>IsResolved</th>
+                                        <th>ResolvedBy</th>
+                                        <th>Click For More Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-click="ShowHide(EventTranscation)"  ng-repeat="EventTranscation in EventTransactionList | filter:{ EventTypeDescription: EventType}:true| limitTo: NumberOfTasks"  id="row1"  >
 
-                                <lik6tv><p  ng-click="Open(Action)" >{{Action.ActionType}}</p></li>
+                                        <!-- <th scope="row">1</th>-->
+                                        <td>{{EventTranscation.EventTransactionID}}</td>
+                                        <td>{{EventTranscation.EventTypeDescription}}</td>
+                                        <td ng-repeat="item in ItemsToBEShown | limitTo:4">{{Getdata(item, EventTranscation)}}</td>
+                                        <td>{{EventTranscation.IsResolved}}</td>
+                                        <td>{{EventTranscation.ResolvedBy}}</td>
+                                        <td>
+                                            <div class="btn-group" dropdown is-open="status.isopen">
+                                                <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+                                                    Button dropdown <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                                                    <li role="menuitem"><a href="#">Action</a></li>
+                                                    <li role="menuitem"><a href="#">Another action</a></li>
+                                                    <li role="menuitem"><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li role="menuitem"><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
 
-                            </ul>*@
+                                            @*<a href="#"><span class="glyphicon glyphicon-chevron-down" ng-click="ShowAllDetails(EventTransaction)"></span></a>*@
+                                        </td>
+                                        <td><span class="glyphicon glyphicon-chevron-down" ng-click="ShowAllDetails(EventTransaction)"></span></td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="col-sm-1 " ng-show="IsVisible" id="panel1" style="margin-left: 10px;">
+                            <div class="panel panel-primary" style="position: static; width: 230px; height:400px;">
+                                <br>
+                                <div style="font-size:20px"><b>&nbsp;&nbsp;{{EventTypeData}}</b></div>
+                                <br />
+                                <div style="font-size: 17px; color:Red">&nbsp; &nbsp;<b> Action list</b></div>
+
+                                <ul ng-repeat="Action in ActionList">
+
+                                    <li><a ng-href={{Action.TargetURL}} target="_blank">{{Action.ActionType}}</a></li>
+
+                                </ul>
+
+
+                            </div>
+
+
                         </div>
 
 
@@ -82,39 +105,42 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
-    </div>
 
 @section Scripts {
-<script>
-    function ShowEventActionList() {
-        var json = $.ajax({
-            type: 'GET',
-            url: "/Home/GetEventActionList",
-            dataType: json,
-            async: false
 
-        }).responseText;
-    
-        var jsonData = JSON.parse(json);
-        var abc = $.parseJSON(json);
-     
-        console.log(jsonData);
-        console.log(abc);
-    }
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
 
-</script>
-<script type="text/javascript" src="~/Scripts/angular.min.js"></script>
-   
-<script type="text/javascript" src="~/ClientScripts/app.js"></script>
-<script type="text/javascript" src="~/ClientScripts/HomeController.js" ></script>
-<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
-    }
+    <script type="text/javascript" src="~/ClientScripts/app.js"></script>
+    <script type="text/javascript" src="~/ClientScripts/HomeController.js"></script>
+    <script type="text/javascript" src="~/ClientScripts/EventService.js"></script>
+
+
+}
 
 @section Style{
 
+
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+    </style>
 
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
 }

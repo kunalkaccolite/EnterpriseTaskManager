@@ -1,5 +1,5 @@
 ﻿
 
-  var app= angular.module("TaskManager",[]);
+var app = angular.module("TaskManager", ['ngAnimate', 'ui.bootstrap']);
 
 

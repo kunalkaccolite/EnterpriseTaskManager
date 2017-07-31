@@ -1,4 +1,5 @@
-﻿using EnterpriseTaskManager.DataAccess;
+﻿using EnterpriseTaskManager.Common;
+using EnterpriseTaskManager.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace EnterpriseTaskManager
 {
 	public class ETMController
 	{
-		SqlHelper sqlHelper = new SqlHelper();
+		EventDAL eventDAl = new EventDAL();
 
 		public string GetEventActionListForEvent(String EventType="Registration")
 		{
-			var EventActionList = sqlHelper.GetEventActionForEvent(EventType);
+			var EventActionList = eventDAl.GetEventActionForEvent(EventType);
 			StringBuilder sb = new StringBuilder();
 			var jsSerializer = new JavaScriptSerializer();
 			jsSerializer.Serialize(EventActionList, sb);
@@ -22,13 +23,34 @@ namespace EnterpriseTaskManager
 		}
 
 
+        public string EventTypeDetails(String EventType)
+        {
+            var EventActionList = eventDAl.EventTypeDetails(EventType);
+            StringBuilder sb = new StringBuilder();
+            var jsSerializer = new JavaScriptSerializer();
+            jsSerializer.Serialize(EventActionList, sb);
+            return sb.ToString();
+        }
+      
+
+
+
         public string GetEventTransactionList()
         {
-            var EventTransactionList = sqlHelper.GetEventTransaction();
+            var EventTransactionList = eventDAl.GetEventTransaction();
             StringBuilder sb = new StringBuilder();
             var jsSerializer = new JavaScriptSerializer();
             jsSerializer.Serialize(EventTransactionList, sb);
             return sb.ToString();
+        }
+
+        public void InsertEventTransaction(string eventTransactionJSON)
+        {
+            var jsSerializer = new JavaScriptSerializer();
+            var Object = jsSerializer.Deserialize<EventTransaction>(eventTransactionJSON);
+             eventDAl.InsertEventTransaction(Object);
+
+            // throw new NotImplementedException();
         }
     }
 }

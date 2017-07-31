@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace EnterpriseTaskManager.App_Start
+namespace EnterpriseTaskManager
 {
     public static class WebApiConfig
     {
