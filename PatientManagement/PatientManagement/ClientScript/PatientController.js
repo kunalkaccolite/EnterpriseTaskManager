@@ -53,6 +53,7 @@
         var promisePost = patientService.postInfo(Patient);
         promisePost.then(function (d) {
             $scope.PersonId = d.data.PersonId;
+            initialize();
         }, function (err) {
             alert("Some Error Occured ");
         });

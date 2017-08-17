@@ -27,3 +27,15 @@
 /PatientManagement/PatientManagement.DataAccess/PatientManagement.DataAccess.csproj.user
 /PatientManagement
 /Level0TaskGeneratingScript.html
+/EventUtility/.vs/EventUtility/v15/.suo
+/EventUtility/EventUtility/bin/Debug
+/EventUtility/EventUtility/obj/Debug
+/EnterpriseTaskManager.Test/bin/Debug
+/EnterpriseTaskManager.Test/obj/Debug
+/EnterpriseTaskManger.AngularJS_UnitTest.Tests
+/EnterpriseTaskManger.AngularJS_UnitTest.Tests.Tests
+/docker-compose.ci.build.yml
+/docker-compose.dcproj
+/docker-compose.override.yml
+/docker-compose.vs.release.yml
+/docker-compose.vs.debug.yml

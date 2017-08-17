@@ -156,3 +156,39 @@ GO
 
 ALTER TABLE [dbo].[RoleEventTypeMappings] CHECK CONSTRAINT [FK_RoleEventTypeMappings_Roles]
 GO
+
+
+GO
+create  procedure users_login (
+                              @username varchar(50),
+                              @password varchar(50),                             
+                              @ret int output
+                             )
+as
+  begin
+       set @ret=0
+       select @ret=1 
+       from Users 
+       where UserName=isnull(@username,null) and [Password]=@password
+  end
+
+  GO
+
+  create Procedure sp_GetEventTypeForUser(
+  @UserName varchar(50) 
+  )
+  As
+  begin
+  SELECT EventType.EventTypeDescription FROM EventType Inner join RoleEventTypeMappings on RoleEventTypeMappings.EventTypeID=EventType.EventTypeID Inner join UserID_RoleID_Mappings on UserID_RoleID_Mappings.RoleId=RoleEventTypeMappings.RoleID inner join Users on UserID_RoleID_Mappings.UserId=Users.UserId where UserName=@UserName
+  END
+
+  
+  
+  exec sp_GetEventTypeForUser 'kunal'
+
+
+  	
+
+DECLARE @returnObject int;
+  exec users_login null, '1234' ,@ret=@returnObject output
+  select @returnObject

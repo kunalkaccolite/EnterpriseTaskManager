@@ -12,15 +12,15 @@ namespace EnterpriseTaskManager.DataAccess
 {
 	public class SqlHelper 
 	{
-		public static string EventDB_ConnectionString = ConfigurationManager.ConnectionStrings["EventDB_ConnectionString"].ConnectionString;
+		//public static string EventDB_ConnectionString = ConfigurationManager.ConnectionStrings["EventDB_ConnectionString"].ConnectionString;
         SqlConnection sqlcon;
         SqlCommand sqlcmd;
 
         public SqlHelper()
         {
             sqlcon = new SqlConnection();
-            sqlcon.ConnectionString=EventDB_ConnectionString;
-
+           // sqlcon.ConnectionString=EventDB_ConnectionString;
+           sqlcon.ConnectionString= ConfigurationManager.ConnectionStrings["EventDB_ConnectionString"].ConnectionString;
         }
 
         //overloaded the constructor to support multiple connections tring on the fly

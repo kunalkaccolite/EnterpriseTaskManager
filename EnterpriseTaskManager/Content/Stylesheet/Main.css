@@ -48,6 +48,9 @@
         }
 }
 
+.SelectedRow {
+    background-color: aquamarine;
+}
 
 table tr:nth-child(4n+1) td {
   //  background-color:gainsboro;

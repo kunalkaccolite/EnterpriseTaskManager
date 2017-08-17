@@ -11,7 +11,9 @@ namespace EnterpriseTaskManager.Common
 		public int EventTypeID { get; set; }
 		public string ActionType { get; set; }
 		public string TargetURL { get; set; }
-		public string TargetInputObjectType { get; set; }
+		public string RequestType { get; set; }
+        public string BodyFormat { get; set; }
+        public string MethodType { get; set; }
 
 	}
 }

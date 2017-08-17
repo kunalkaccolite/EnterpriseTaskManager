@@ -11,9 +11,12 @@ namespace PatientManagement.WebApi
     {
         HospitalMangement hmObj = new HospitalMangement();
 
+        /// <summary>
+        /// Posts d
+        /// </summary>
+        /// <param name="Data"></param>
         public void Post([FromBody]String Data) {
-            //parentTransactionId
-            var BodyDictionary = EventUtility.JSONToDictionary.DictionatryBuilder(Data);
+            var BodyDictionary = EventUtility.JsonToDictionary.DictionatryBuilder(Data);
             var PatientID = BodyDictionary["PatientId"];
             var parentTransactionId = BodyDictionary["parentTransactionId"];
             hmObj.UpdateEncounterStatus(PatientID, Int32.Parse(parentTransactionId));

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EnterpriseTaskManager.DataAccess;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,21 +12,17 @@ namespace EnterpriseTaskManager.WebAPI
     public class TransactionController : ApiController
     {
 
-        ETMController etmControllerObj = new ETMController();
+        private ETMController etmControllerObj = new ETMController(new EventDAL());
 
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        /// <summary>
+        /// Updating the Event Transction as Resolved
+        /// </summary>
+        /// <param name="transactionId"></param>
+        /// <returns></returns>
+        // POST api/Transaction
 
-        // POST api/<controller>
         public bool Post([FromBody]int transactionId)
         {
             try
@@ -34,18 +32,11 @@ namespace EnterpriseTaskManager.WebAPI
             }
             catch (Exception e)
             {
+                logger.Error(e, "Exception occured in Transaction Controller's UpdateEventTransaction Action");
                 return false;
             }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+     
     }
 }

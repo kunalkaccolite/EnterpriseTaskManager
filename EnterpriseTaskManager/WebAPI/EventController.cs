@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EnterpriseTaskManager.DataAccess;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,33 +11,23 @@ namespace EnterpriseTaskManager.WebAPI
 {
     public class EventController : ApiController
     {
-        ETMController etmControllerObj = new ETMController();
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private  ETMController etmControllerObj = new ETMController(new EventDAL());
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        // POST api/Event
+        public bool Post([FromBody]string EventTransactionJSON)
         {
-            return "value";
-        }
+            try
+            {
+                etmControllerObj.InsertEventTransaction(EventTransactionJSON);
+                return true;
+            }
+            catch(Exception e)
+            {
+                logger.Error(e, "Exception occured in Event WebAPI Post Method");
+                return false;
+            }
 
-        // POST api/<controller>
-        public void Post([FromBody]string EventTransactionJSON)
-        {
-            etmControllerObj.InsertEventTransaction(EventTransactionJSON);
-        }
-        
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
     }
 }

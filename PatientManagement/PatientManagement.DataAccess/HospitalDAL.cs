@@ -182,7 +182,7 @@ namespace PatientManagement.DataAccess
                 SqlParamArray[0] = new SqlParameter("@PatientId", PatientId);
                 var patient = new PatientEncounter();
                 SqlHelper sqlHelper = new SqlHelper();
-                SqlDataReader rdr = sqlHelper.ExecuteDataReader(SQLQueriesConstants.sp_GetPatientDetails, SqlParamArray);
+                SqlDataReader rdr = sqlHelper.ExecuteDataReader(SQLQueriesConstants.sp_GetPatientEncounterDetails, SqlParamArray);
                 while (rdr.Read())
                 {
                     int index = rdr.GetOrdinal("Name");
@@ -195,6 +195,15 @@ namespace PatientManagement.DataAccess
                     patient.Address = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
                     index = rdr.GetOrdinal("DOB");
                     patient.DOB = !rdr.IsDBNull(index) ? rdr.GetDateTime(index) : DateTime.MinValue;
+                    index = rdr.GetOrdinal("DoctorId");
+                    patient.DoctorId = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
+                    index = rdr.GetOrdinal("ProcedureCode");
+                    patient.ProcedureCode = !rdr.IsDBNull(index) ? rdr.GetInt32(index) : 0;
+                    index = rdr.GetOrdinal("Status");
+                    patient.Status = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
+                    index = rdr.GetOrdinal("CreatedBy");
+                    patient.CreatedBy = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
+                    patient.PatientId = PatientId;
                 }
                 return patient;
             }
@@ -210,11 +219,11 @@ namespace PatientManagement.DataAccess
         {
             try
             {
-                SqlParameter[] SqlParamArray = new SqlParameter[3];
+                SqlParameter[] SqlParamArray = new SqlParameter[2];
 
                 SqlParamArray[0] = new SqlParameter("@EncounterID", encounter.EncounterId);
                 SqlParamArray[1] = new SqlParameter("@Status", encounter.Status);
-                SqlParamArray[2] = new SqlParameter("@UpdatedBy", encounter.UpdatedBy);
+              //  SqlParamArray[2] = new SqlParameter("@UpdatedBy", encounter.UpdatedBy);
                 SqlHelper sqlHelper = new SqlHelper();
 
                 sqlHelper.ExecuteNonQuery(DataAccess.SQLQueriesConstants.sp_UpdateEncounter, SqlParamArray);
@@ -227,6 +236,39 @@ namespace PatientManagement.DataAccess
                 return false;
             }
         }
+
+        public UpdateEncounter GetEncounterDetails(string PatientId)
+        {
+            try
+            {
+                SqlParameter[] SqlParamArray = new SqlParameter[1];
+                SqlParamArray[0] = new SqlParameter("@PatientId", PatientId);
+                var encounter = new UpdateEncounter();
+                SqlHelper sqlHelper = new SqlHelper();
+                SqlDataReader rdr = sqlHelper.ExecuteDataReader(SQLQueriesConstants.sp_GetEncounterDetails, SqlParamArray);
+                while (rdr.Read())
+                {
+                    int index = rdr.GetOrdinal("EncounterId");
+                    encounter.EncounterId = !rdr.IsDBNull(index) ? rdr.GetInt32(index) : 0;
+                    index = rdr.GetOrdinal("PatientId");
+                    encounter.patientId = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
+                    index = rdr.GetOrdinal("DoctorId");
+                    encounter.DoctorId = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
+                    index = rdr.GetOrdinal("Status");
+                    encounter.Status = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
+                    index = rdr.GetOrdinal("UpdatedBy");
+                    encounter.UpdatedBy = !rdr.IsDBNull(index) ? rdr.GetString(index) : null;
+                }
+                return encounter;
+            }
+            catch (Exception e)
+            {
+
+                return null;
+            }
+
+        }
+
 
     }
 }

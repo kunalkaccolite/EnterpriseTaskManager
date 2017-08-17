@@ -15,5 +15,8 @@ namespace PatientManagement.DataAccess
         public static string sp_GetInsuranceDetails = "sp_GetInsuranceDetails";
         public static string sp_UpdateInsuranceDetails = "sp_UpdateInsuranceDetails";
         public static string sp_GetPatientDetails = "sp_GetPatientDetails";
+        public static string sp_GetEncounterDetails = "sp_GetEncounterDetails";
+        public static string sp_GetPatientEncounterDetails = "sp_GetPatientEncounterDetails";
+
     }
 }

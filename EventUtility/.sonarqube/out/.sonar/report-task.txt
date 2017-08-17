@@ -1,0 +1,6 @@
+projectKey=EventUtility
+serverUrl=http://kuki-del-19:9000
+serverVersion=6.5.0.27846
+dashboardUrl=http://kuki-del-19:9000/dashboard/index/EventUtility
+ceTaskId=AV3kK_tK_WUz5ghq36q8
+ceTaskUrl=http://kuki-del-19:9000/api/ce/task?id=AV3kK_tK_WUz5ghq36q8

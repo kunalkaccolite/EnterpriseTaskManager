@@ -24,5 +24,7 @@ namespace PatientManagement.WebApi
             return patientDetatil;
         }
 
+
+        
     }
 }
