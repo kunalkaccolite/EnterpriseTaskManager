@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+
+
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Patient Basic Info</legend>
+            <div class="form-group">
+
+                <label for="PatientId" class="col-sm-3 control-label">Patient Id</label>
+                <div class="col-sm-9">
+                    <input type="text" id="PatientId" name="PatientId"
+                           ng-model="PatientId" class="form-control"  />
+                </div>
+                <!--<label for="title" class="col-sm-3 control-label">Person Id</label>
+                <div class="col-sm-9">
+                    <select id="title" name="title" class="form-control"
+                            ng-model="selectedtitle"
+                            ng-options="t for t in title"></select>
+                </div>-->
+
+                <label for="PatientName" class="col-sm-3 control-label">Patient Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="PatientName" name="PatientName"
+                           ng-model="PatientName" class="form-control" />
+                </div>
+                  <label for="gender" class="col-sm-3 control-label">Gender</label>
+                <div class="col-sm-9">
+                    <select id="gender" name="gender" class="form-control"
+                            ng-model="selectedGender"
+                            ng-options="g for g in gender"></select>
+                </div>
+
+                <label for="birthdate" class="col-sm-3 control-label">Birth Date</label>
+                <div class="col-sm-9">
+
+                    <input type="date" class="form-control"
+                           datepicker-popup="dd/mm/yyyy"
+                           ng-model="BirthDate" is-open="opened"
+                           close-text="Close" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Address and Contact Information :</legend>
+            <div class="form-group">
+                <label for="Address" class="col-sm-3 control-label">Address</label>
+                <div class="col-sm-9">
+                    <textarea id="Address" name="Address"
+                              ng-model="Address" class="form-control"></textarea>
+                </div>
+                <label for="mobileno" class="col-sm-3 control-label">Mobile No.</label>
+                <div class="col-sm-9">
+                    <input type="text" id="mobileno" name="mobileno"
+                           ng-model="MobileNo" class="form-control" />
+                </div>
+
+                </div>
+          
+        </fieldset>
+        <fieldset>
+        
+            <legend>Medical Information </legend>
+            <div class="form-group">
+                <label for="DoctorId" class="col-sm-3 control-label">Doctor ID</label>
+                <div class="col-sm-9">
+                    <textarea id="DoctorId" name="DoctorId"
+                              ng-model="DoctorId" class="form-control"></textarea>
+                </div>
+                <label for="ProcedureCode" class="col-sm-3 control-label">Procedure Code</label>
+                <div class="col-sm-9">
+                    <input type="text" id="ProcedureCode" name="ProcedureCode"
+                           ng-model="ProcedureCode" class="form-control" />
+                </div>
+                </div>
+        </fieldset>
+      
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="button" class="btn btn-default" value="Cancel"
+                   ng-click="cancelForm()" />
+            <input type="button" class="btn btn-primary" value="Submit"
+                   ng-click="submitForm()" />
+        </div>
+
+    </form>
+</body>
+</html>

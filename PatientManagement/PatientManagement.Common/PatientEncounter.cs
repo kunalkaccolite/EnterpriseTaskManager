@@ -13,6 +13,7 @@ namespace PatientManagement.Common
 		public string Sex { get; set; }
 		public string Address { get; set; }
 		public string PhoneNo { get; set; }
+        public int EncounterId { get; set; }
 		public string DoctorId { get; set; }
 		public string Status { get; set; }
 		public string CreatedBy { get; set; }

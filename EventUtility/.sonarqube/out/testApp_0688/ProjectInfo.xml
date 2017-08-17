@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>testApp</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Test</ProjectType>
+  <ProjectGuid>5c02510f-be1f-4a77-8f40-391fbe36784f</ProjectGuid>
+  <FullPath>C:\Users\kunal\Desktop\EventUtility\testApp\testApp.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResults>
+    <AnalysisResult Id="FilesToAnalyze" Location="C:\Users\kunal\Desktop\EventUtility\.sonarqube\out\\testApp_0688\FilesToAnalyze.txt" />
+  </AnalysisResults>
+  <AnalysisSettings>
+    <Property Name="sonar.stylecop.projectFilePath">C:\Users\kunal\Desktop\EventUtility\testApp\testApp.csproj</Property>
+  </AnalysisSettings>
+</ProjectInfo>

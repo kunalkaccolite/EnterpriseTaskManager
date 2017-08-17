@@ -15,5 +15,10 @@ namespace EnterpriseTaskManager.Common
 		public string IsResolved { get; set; }
 		public string ResolvedBy { get; set; }
         public String EventTypeDescription { get; set; }
-	}
+        public DateTime CreatedDate { get; set; }
+        // { return Convert.ToDateTime(CreatedDateString); } set { this.CreatedDateString = CreatedDate.ToString(); }
+        public String CreatedDateString;
+        public DateTime LastModifiedDate { get; set ;  }
+        public String LastModifiedDateString;
+    }
 }

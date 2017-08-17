@@ -10,7 +10,6 @@ namespace EnterpriseTaskManager.Common
 	{
 		public int EventTypeID { get; set; }
 		public string EventTypeDescription { get; set; }
-		public string InputTypeObject { get; set; }
-		public string OutputObjectType { get; set; }
+		public string DisplayParameters { get; set; }
 	}
 }
